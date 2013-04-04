@@ -8,6 +8,15 @@
     </head>
 
     <body>
+		<nav>
+	  		<form action="/tests" method="get">
+				<input type="submit" value="Tests" style="float: right">
+			</form>
+	  		<form action="/" method="get">
+				<input type="submit" value="Home" style="float: right">
+			</form>
+		</nav>
+
         <div>
         <h1> UNIT control and monitor</h1>
 
@@ -48,6 +57,7 @@
             function stop(){
                 progressWs.send("stop");
             }
+
         </script>
     </div>
     </body>

@@ -10,6 +10,10 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("main.html")
 
+class TestsHandler(tornado.web.RequestHandler):
+    def get(self):
+	tests = ["Test 1", "Test 2", "Test 3", "Test 4", "Test 5"]
+        self.render("tests.html", tests=tests)
 
 class LogHandler(tornado.websocket.WebSocketHandler):
     def open(self):
@@ -55,6 +59,7 @@ application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/progress", ProgressHandler),
     (r"/log", LogHandler),
+    (r"/tests", TestsHandler),
 ])
 
 
