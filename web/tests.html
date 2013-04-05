@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <style> 
+	    div.back {background-color:grey; border:1px solid black; }
+        div.moveable {width:500px; height:56px; border:1px solid black; }
+        div.test {width:20px; height:48px; background-color:black; margin:4px; float: left; }
+    </style>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text",ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data=ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+    <head> 
+        <title> Test Selection </title> 
+    </head>
+
+    <body>
+		<nav>
+	  		<form action="/tests" method="get">
+				<input type="submit" value="Tests" style="float: right">
+			</form>
+	  		<form action="/" method="get">
+				<input type="submit" value="Home" style="float: right">
+			</form>
+		</nav>
+
+        <div class="back">
+        <h1> Test Selection</h1>
+
+            <div id="tests" class="moveable" ondrop="drop(event)" ondragover="allowDrop(event)">
+                {% for test in tests %}
+                    <div id="{{ test }}" class="test" draggable="true" title="{{ test }}" ondragstart="drag(event)"></div>
+                {% end %}
+            </div> 
+            <br><br>
+            <div id="selected" class="moveable" ondrop="drop(event)" ondragover="allowDrop(event)"></div>  
+
+        </div>
+    </body>
+</html>
